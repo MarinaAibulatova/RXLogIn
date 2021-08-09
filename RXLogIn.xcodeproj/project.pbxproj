@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,12 @@
 		9C2FC46626C121C800AA0A62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FC46426C121C800AA0A62 /* Main.storyboard */; };
 		9C2FC46826C121CB00AA0A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FC46726C121CB00AA0A62 /* Assets.xcassets */; };
 		9C2FC46B26C121CB00AA0A62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FC46926C121CB00AA0A62 /* LaunchScreen.storyboard */; };
+		9C2FC47326C12AF000AA0A62 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FC47226C12AF000AA0A62 /* LoginModel.swift */; };
+		AC4DC3BFAC55B854C2DFB5B3 /* Pods_RXLogIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B2BC734155C029275447D0 /* Pods_RXLogIn.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1126613B375104E9A36F9361 /* Pods-RXLogIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RXLogIn.release.xcconfig"; path = "Target Support Files/Pods-RXLogIn/Pods-RXLogIn.release.xcconfig"; sourceTree = "<group>"; };
 		9C2FC45B26C121C800AA0A62 /* RXLogIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RXLogIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C2FC45E26C121C800AA0A62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C2FC46026C121C800AA0A62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,9 @@
 		9C2FC46726C121CB00AA0A62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C2FC46A26C121CB00AA0A62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C2FC46C26C121CB00AA0A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C2FC47226C12AF000AA0A62 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		C7B2BC734155C029275447D0 /* Pods_RXLogIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RXLogIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF1E5E046E73EC7FBB0768F0 /* Pods-RXLogIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RXLogIn.debug.xcconfig"; path = "Target Support Files/Pods-RXLogIn/Pods-RXLogIn.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4DC3BFAC55B854C2DFB5B3 /* Pods_RXLogIn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C4B2D0C31835A8FF8A31400 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF1E5E046E73EC7FBB0768F0 /* Pods-RXLogIn.debug.xcconfig */,
+				1126613B375104E9A36F9361 /* Pods-RXLogIn.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9C2FC45226C121C800AA0A62 = {
 			isa = PBXGroup;
 			children = (
 				9C2FC45D26C121C800AA0A62 /* RXLogIn */,
 				9C2FC45C26C121C800AA0A62 /* Products */,
+				4C4B2D0C31835A8FF8A31400 /* Pods */,
+				D31B1E5535EC6E53DB267B23 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +81,17 @@
 				9C2FC46726C121CB00AA0A62 /* Assets.xcassets */,
 				9C2FC46926C121CB00AA0A62 /* LaunchScreen.storyboard */,
 				9C2FC46C26C121CB00AA0A62 /* Info.plist */,
+				9C2FC47226C12AF000AA0A62 /* LoginModel.swift */,
 			);
 			path = RXLogIn;
+			sourceTree = "<group>";
+		};
+		D31B1E5535EC6E53DB267B23 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7B2BC734155C029275447D0 /* Pods_RXLogIn.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C2FC46F26C121CB00AA0A62 /* Build configuration list for PBXNativeTarget "RXLogIn" */;
 			buildPhases = (
+				BBB13971F99F2563D9B29CE1 /* [CP] Check Pods Manifest.lock */,
 				9C2FC45726C121C800AA0A62 /* Sources */,
 				9C2FC45826C121C800AA0A62 /* Frameworks */,
 				9C2FC45926C121C800AA0A62 /* Resources */,
+				789576AF0E45C1E49F540AC4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,12 +161,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		789576AF0E45C1E49F540AC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RXLogIn/Pods-RXLogIn-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RXLogIn/Pods-RXLogIn-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RXLogIn/Pods-RXLogIn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBB13971F99F2563D9B29CE1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RXLogIn-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9C2FC45726C121C800AA0A62 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9C2FC46326C121C800AA0A62 /* ViewController.swift in Sources */,
+				9C2FC47326C12AF000AA0A62 /* LoginModel.swift in Sources */,
 				9C2FC45F26C121C800AA0A62 /* AppDelegate.swift in Sources */,
 				9C2FC46126C121C800AA0A62 /* SceneDelegate.swift in Sources */,
 			);
@@ -283,6 +355,7 @@
 		};
 		9C2FC47026C121CB00AA0A62 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF1E5E046E73EC7FBB0768F0 /* Pods-RXLogIn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +375,7 @@
 		};
 		9C2FC47126C121CB00AA0A62 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1126613B375104E9A36F9361 /* Pods-RXLogIn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
