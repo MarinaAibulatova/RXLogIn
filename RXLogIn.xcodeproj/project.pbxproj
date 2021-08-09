@@ -15,6 +15,7 @@
 		9C2FC46B26C121CB00AA0A62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FC46926C121CB00AA0A62 /* LaunchScreen.storyboard */; };
 		9C2FC47326C12AF000AA0A62 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FC47226C12AF000AA0A62 /* LoginModel.swift */; };
 		9C2FC47626C1307B00AA0A62 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FC47526C1307B00AA0A62 /* LoginView.swift */; };
+		9C2FC47A26C154A100AA0A62 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FC47926C154A100AA0A62 /* LoginViewModel.swift */; };
 		AC4DC3BFAC55B854C2DFB5B3 /* Pods_RXLogIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B2BC734155C029275447D0 /* Pods_RXLogIn.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		9C2FC46C26C121CB00AA0A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C2FC47226C12AF000AA0A62 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		9C2FC47526C1307B00AA0A62 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9C2FC47926C154A100AA0A62 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C7B2BC734155C029275447D0 /* Pods_RXLogIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RXLogIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF1E5E046E73EC7FBB0768F0 /* Pods-RXLogIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RXLogIn.debug.xcconfig"; path = "Target Support Files/Pods-RXLogIn/Pods-RXLogIn.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,15 +78,16 @@
 		9C2FC45D26C121C800AA0A62 /* RXLogIn */ = {
 			isa = PBXGroup;
 			children = (
+				9C2FC47826C1548E00AA0A62 /* ViewModel */,
+				9C2FC47726C1506300AA0A62 /* Model */,
 				9C2FC47426C1306800AA0A62 /* View */,
+				9C2FC46226C121C800AA0A62 /* ViewController.swift */,
 				9C2FC45E26C121C800AA0A62 /* AppDelegate.swift */,
 				9C2FC46026C121C800AA0A62 /* SceneDelegate.swift */,
-				9C2FC46226C121C800AA0A62 /* ViewController.swift */,
 				9C2FC46426C121C800AA0A62 /* Main.storyboard */,
 				9C2FC46726C121CB00AA0A62 /* Assets.xcassets */,
 				9C2FC46926C121CB00AA0A62 /* LaunchScreen.storyboard */,
 				9C2FC46C26C121CB00AA0A62 /* Info.plist */,
-				9C2FC47226C12AF000AA0A62 /* LoginModel.swift */,
 			);
 			path = RXLogIn;
 			sourceTree = "<group>";
@@ -95,6 +98,22 @@
 				9C2FC47526C1307B00AA0A62 /* LoginView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9C2FC47726C1506300AA0A62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9C2FC47226C12AF000AA0A62 /* LoginModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9C2FC47826C1548E00AA0A62 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9C2FC47926C154A100AA0A62 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D31B1E5535EC6E53DB267B23 /* Frameworks */ = {
@@ -221,6 +240,7 @@
 			files = (
 				9C2FC46326C121C800AA0A62 /* ViewController.swift in Sources */,
 				9C2FC47326C12AF000AA0A62 /* LoginModel.swift in Sources */,
+				9C2FC47A26C154A100AA0A62 /* LoginViewModel.swift in Sources */,
 				9C2FC45F26C121C800AA0A62 /* AppDelegate.swift in Sources */,
 				9C2FC47626C1307B00AA0A62 /* LoginView.swift in Sources */,
 				9C2FC46126C121C800AA0A62 /* SceneDelegate.swift in Sources */,

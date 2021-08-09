@@ -10,17 +10,20 @@ import SnapKit
 
 class LoginView: UIView {
   
+  var buttonAction: (() -> Void)?
+  
   //MARK: - UI components
    let mainView: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .white
     view.contentMode = .scaleToFill
+    view.isUserInteractionEnabled = true
     
     return view
   }()
   
-  private let emailTextField: UITextField = {
+   let emailTextField: UITextField = {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
     textField.font = UIFont.systemFont(ofSize: 14)
@@ -38,7 +41,7 @@ class LoginView: UIView {
     return textField
   }()
   
-  private let passwordTextField: UITextField = {
+   let passwordTextField: UITextField = {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
     textField.font = UIFont.systemFont(ofSize: 14)
@@ -54,7 +57,7 @@ class LoginView: UIView {
     return textField
   }()
   
-  private let forgotButton: UIButton = {
+   let forgotButton: UIButton = {
     let button = UIButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = UIColor.white
@@ -65,8 +68,9 @@ class LoginView: UIView {
     return button
   }()
   
-  private let logInButton: UIButton = {
+   let logInButton: UIButton = {
     let button = UIButton()
+    button.isEnabled = false
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Log in", for: .normal)
     button.setTitleColor(UIColor.systemBlue, for: .normal)
@@ -75,6 +79,7 @@ class LoginView: UIView {
     
     return button
   }()
+  
   
   //MARK: - init
   override init(frame: CGRect) {
