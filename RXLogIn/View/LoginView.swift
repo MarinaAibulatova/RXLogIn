@@ -13,7 +13,7 @@ class LoginView: UIView {
   //MARK: - UI components
    let mainView: UIView = {
     let view = UIView()
-    view.translatesAutoresizingMaskIntoConstraints = false
+   
     view.backgroundColor = .white
     view.contentMode = .scaleToFill
     view.isUserInteractionEnabled = true
@@ -23,7 +23,6 @@ class LoginView: UIView {
   
    let emailTextField: UITextField = {
     let textField = UITextField()
-    textField.translatesAutoresizingMaskIntoConstraints = false
     textField.font = UIFont.systemFont(ofSize: 14)
     textField.placeholder = "Email"
     textField.keyboardType = .emailAddress
@@ -42,7 +41,6 @@ class LoginView: UIView {
   
    let passwordTextField: UITextField = {
     let textField = UITextField()
-    textField.translatesAutoresizingMaskIntoConstraints = false
     textField.font = UIFont.systemFont(ofSize: 14)
     textField.isSecureTextEntry = true
     textField.placeholder = "Password"
@@ -58,7 +56,6 @@ class LoginView: UIView {
   
    let forgotButton: UIButton = {
     let button = UIButton()
-    button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = UIColor.white
     button.setTitle("Forgot password", for: .normal)
     button.setTitleColor(.systemTeal, for: .normal)
@@ -69,11 +66,12 @@ class LoginView: UIView {
   
    let logInButton: UIButton = {
     let button = UIButton()
-    button.isEnabled = false
-    button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Log in", for: .normal)
-    button.setTitleColor(UIColor.systemBlue, for: .normal)
-    button.backgroundColor = UIColor.systemGray6
+    button.setTitleColor(UIColor.white, for: .normal)
+    button.setTitleColor(UIColor.systemBlue, for: .disabled)
+    button.setBackgroundColor(color: UIColor.systemGray6, forState: .disabled)
+    button.setBackgroundColor(color: UIColor.systemBlue, forState: .normal)
+    button.showsTouchWhenHighlighted = true
     button.layer.cornerRadius = 10
     
     return button
@@ -92,6 +90,17 @@ class LoginView: UIView {
   
   //MARK: - set view
   private func setView() {
+    self.backgroundColor = .white
+    
+    addSubview(mainView)
+    mainView.snp.makeConstraints { (make) in
+      make.left.equalToSuperview()
+      make.right.equalToSuperview()
+      make.top.equalToSuperview()
+      make.bottom.equalToSuperview()
+    }
+    
+   // addSubview(emailTextField)
     mainView.addSubview(emailTextField)
     mainView.addSubview(passwordTextField)
     mainView.addSubview(forgotButton)
@@ -108,7 +117,7 @@ class LoginView: UIView {
     emailTextField.snp.makeConstraints { (make) in
       make.left.equalTo(mainView.layoutMargins.left)
       make.right.equalTo(mainView.snp.right).offset(-8)
-      make.top.equalToSuperview().offset(80)
+      make.top.equalTo(mainView.safeAreaLayoutGuide.snp.top)
       make.height.equalTo(35)
     }
   }
@@ -136,16 +145,19 @@ class LoginView: UIView {
       make.top.equalTo(forgotButton.snp.bottom).offset(30)
     }
   }
+}
 
-  
-  
-  
-
-  
-  
-
-  
-  
-
+extension UIButton {
+  func setBackgroundColor(color: UIColor, forState: UIControl.State) {
+    self.clipsToBounds = true
+    UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+    if let context = UIGraphicsGetCurrentContext() {
+      context.setFillColor(color.cgColor)
+      context.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+      let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+      UIGraphicsEndImageContext()
+      self.setBackgroundImage(colorImage, for: forState)
+    }
+  }
 }
 
