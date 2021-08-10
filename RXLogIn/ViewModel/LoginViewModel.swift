@@ -10,11 +10,7 @@ import RxCocoa
 
 struct LoginViewModel {
   static let validPassword: Int = 8
-  
-  let emailSubject = PublishSubject<String>()
-  let passwordSubject = PublishSubject<String>()
-  let disposeBag = DisposeBag()
-
+ 
   func validation(email: Observable<String>, password: Observable<String>) -> Observable<Bool> {
     
     return Observable.combineLatest(email, password) {
@@ -26,8 +22,7 @@ struct LoginViewModel {
   }
 }
 
-
-
+//MARK: - validation email
 extension String {
   func validEmail() -> Bool {
     let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
