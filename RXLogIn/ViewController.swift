@@ -6,66 +6,70 @@
 //
 
 import UIKit
-import SnapKit
 import RxSwift
 import RxCocoa
 
 class ViewController: UIViewController {
 
-  private let loginView = LoginView()
+ private let loginView = LoginView()
   
   //MARK: - rx
   private let disposeBag = DisposeBag()
   private var viewModel = LoginViewModel()
   
+  //MARK: - ui
+  weak var emailTextField: UITextField!
+  weak var passwordTextField: UITextField!
+  weak var logInButton: UIButton!
+
   override func viewDidLoad() {
     super.viewDidLoad()
- 
-    title = "Log in"
  
     setView()
     bind()
   }
   
+  override func loadView() {
+    let view = LoginView()
+    self.emailTextField = view.emailTextField
+    self.passwordTextField = view.passwordTextField
+    self.logInButton = view.logInButton
+    
+    self.view = view
+  }
+  
   //MARK: - view
   private func setView() {
-    view.addSubview(loginView.mainView)
-    loginView.mainView.snp.makeConstraints { (make) in
-      make.left.equalToSuperview()
-      make.right.equalToSuperview()
-      make.bottom.equalToSuperview()
-      make.top.equalToSuperview()
-    }
-    loginView.emailTextField.delegate = self
-    loginView.logInButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+    title = "Log in"
+    emailTextField.delegate = self
+    logInButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
   }
-  
-  private func updateView(validation: Bool) {
-    self.loginView.logInButton.isEnabled = validation
-    self.loginView.logInButton.backgroundColor = validation ? UIColor.systemBlue: UIColor.systemGray6
-    self.loginView.logInButton.setTitleColor(validation ? UIColor.white: UIColor.systemBlue, for: .normal)
-  }
-  
+
   //MARK: - bind
   func bind() {
-    let email = loginView.emailTextField.rx.text.orEmpty.asObservable()
-    let password = loginView.passwordTextField.rx.text.orEmpty.asObservable()
+    emailTextField.rx.text
+      .orEmpty
+      .bind(to: viewModel.emailRelay)
+      .disposed(by: disposeBag)
 
-    viewModel.validation(email: email, password: password)
-      .bind{ [weak self] (isEnable) in
-        self?.updateView(validation: isEnable)
-      }.disposed(by: disposeBag)
+    passwordTextField.rx.text
+      .orEmpty
+      .bind(to: viewModel.passwordRelay)
+      .disposed(by: disposeBag)
+
+    viewModel.validation()
+      .bind(to: self.logInButton.rx.isEnabled)
+      .disposed(by: disposeBag)
   }
-  
-  //MARK: - actions
+
+//  //MARK: - actions
   @objc func buttonTapped(_ sender: UIButton) {
-    loginView.logInButton.showsTouchWhenHighlighted = true
     print("tap here")
   }
 }
 
 extension ViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    loginView.passwordTextField.becomeFirstResponder()
+    passwordTextField.becomeFirstResponder()
   }
 }

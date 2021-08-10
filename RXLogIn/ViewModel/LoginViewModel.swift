@@ -9,11 +9,14 @@ import RxSwift
 import RxCocoa
 
 struct LoginViewModel {
-  static let validPassword: Int = 8
- 
-  func validation(email: Observable<String>, password: Observable<String>) -> Observable<Bool> {
+  static let validPassword: Int = 3
+  
+  let emailRelay = BehaviorRelay<String>(value: "")
+  let passwordRelay = BehaviorRelay<String>(value: "")
+  
+  func validation() -> Observable<Bool> {
     
-    return Observable.combineLatest(email, password) {
+    return Observable.combineLatest(self.emailRelay.asObservable(), self.passwordRelay.asObservable()) {
       (email, password) in
       
       return email.validEmail() && password.count >= LoginViewModel.validPassword
