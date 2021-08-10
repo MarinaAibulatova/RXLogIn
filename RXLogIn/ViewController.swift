@@ -51,7 +51,7 @@ class ViewController: UIViewController {
       .orEmpty
       .bind(to: viewModel.emailRelay)
       .disposed(by: disposeBag)
-
+    
     passwordTextField.rx.text
       .orEmpty
       .bind(to: viewModel.passwordRelay)

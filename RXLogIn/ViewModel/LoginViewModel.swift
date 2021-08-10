@@ -14,12 +14,20 @@ struct LoginViewModel {
   let emailRelay = BehaviorRelay<String>(value: "")
   let passwordRelay = BehaviorRelay<String>(value: "")
   
+  private func emailValidation() -> Bool {
+    return emailRelay.value.validEmail()
+  }
+  
+  private func passwordValidation() -> Bool {
+    return passwordRelay.value.count >= LoginViewModel.validPassword
+  }
+  
   func validation() -> Observable<Bool> {
     
     return Observable.combineLatest(self.emailRelay.asObservable(), self.passwordRelay.asObservable()) {
       (email, password) in
       
-      return email.validEmail() && password.count >= LoginViewModel.validPassword
+      return self.emailValidation() && passwordValidation()
     }
     .startWith(false)
   }
