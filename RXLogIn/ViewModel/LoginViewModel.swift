@@ -8,21 +8,25 @@
 import RxSwift
 import RxCocoa
 
-class LoginViewModel {
+struct LoginViewModel {
+  static let validPassword: Int = 8
+  
   let emailSubject = PublishSubject<String>()
   let passwordSubject = PublishSubject<String>()
-  
   let disposeBag = DisposeBag()
-  
-  func isValid() -> Observable<Bool> {
+
+  func validation(email: Observable<String>, password: Observable<String>) -> Observable<Bool> {
     
-    return Observable.combineLatest(emailSubject.asObservable().startWith(""), passwordSubject.asObservable().startWith("")) {
-      email, password in
+    return Observable.combineLatest(email, password) {
+      (email, password) in
       
-      return email.validEmail() && password.count >= 3
-    }.startWith(false)
+      return email.validEmail() && password.count >= LoginViewModel.validPassword
+    }
+    .startWith(false)
   }
 }
+
+
 
 extension String {
   func validEmail() -> Bool {

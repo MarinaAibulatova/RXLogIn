@@ -10,8 +10,6 @@ import SnapKit
 
 class LoginView: UIView {
   
-  var buttonAction: (() -> Void)?
-  
   //MARK: - UI components
    let mainView: UIView = {
     let view = UIView()
@@ -37,6 +35,7 @@ class LoginView: UIView {
     textField.layer.cornerRadius = 10
     textField.clipsToBounds = true
     textField.backgroundColor = UIColor.systemGray6
+    textField.becomeFirstResponder()
     
     return textField
   }()
