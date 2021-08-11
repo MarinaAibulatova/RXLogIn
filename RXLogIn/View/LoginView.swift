@@ -77,6 +77,17 @@ class LoginView: UIView {
     return button
   }()
   
+  let scrollView: UIScrollView = {
+    let scrollView = UIScrollView()
+    return scrollView
+  }()
+  
+  let contentView: UIView = {
+    let view = UIView()
+
+    return view
+  }()
+  
   
   //MARK: - init
   override init(frame: CGRect) {
@@ -92,27 +103,57 @@ class LoginView: UIView {
   private func setView() {
     self.backgroundColor = .white
     
-    addSubview(mainView)
-    mainView.snp.makeConstraints { (make) in
-      make.left.equalToSuperview()
-      make.right.equalToSuperview()
-      make.top.equalToSuperview()
-      make.bottom.equalToSuperview()
-    }
+    addSubview(scrollView)
+    scrollView.addSubview(contentView)
+    contentView.addSubview(mainView)
     
-   // addSubview(emailTextField)
     mainView.addSubview(emailTextField)
     mainView.addSubview(passwordTextField)
     mainView.addSubview(forgotButton)
     mainView.addSubview(logInButton)
     
+    setScrollViewConstraints()
+    setContentViewConstraints()
+    setMainViewConstraints()
+    
     setEmailConstraints()
     setPasswordConstraints()
     setForgotButtonConstraints()
     setLoginButtonConstraints()
+    
   }
   
   //MARK: - constraints
+  private func setScrollViewConstraints() {
+    scrollView.snp.makeConstraints { (make) in
+      make.leading.equalToSuperview()
+      make.trailing.equalToSuperview()
+      make.bottom.equalToSuperview()
+      make.top.equalToSuperview()
+    }
+  }
+  
+  private func setContentViewConstraints() {
+    contentView.snp.makeConstraints { (make) in
+      make.height.equalTo(UIScreen.main.bounds.height + 100)
+      make.leading.equalTo(scrollView.snp.leading)
+      make.trailing.equalTo(scrollView.snp.trailing)
+      make.bottom.equalTo(scrollView.snp.bottom)
+      make.top.equalTo(scrollView.snp.top)
+      make.width.equalTo(scrollView.snp.width)
+    }
+  }
+  
+  private func setMainViewConstraints() {
+    mainView.snp.makeConstraints { (make) in
+      make.leading.equalTo(contentView.snp.leading)
+      make.trailing.equalTo(contentView.snp.trailing)
+      make.centerX.equalTo(contentView.snp.centerX)
+      make.centerY.equalTo(contentView.snp.centerY)
+      make.height.equalTo(100)
+    }
+  }
+  
   private func setEmailConstraints() {
     emailTextField.snp.makeConstraints { (make) in
       make.left.equalTo(mainView.layoutMargins.left)
