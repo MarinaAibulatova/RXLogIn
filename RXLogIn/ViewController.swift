@@ -21,6 +21,7 @@ class ViewController: UIViewController {
   weak var emailTextField: UITextField!
   weak var passwordTextField: UITextField!
   weak var logInButton: UIButton!
+  weak var scrollView: UIScrollView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,6 +35,7 @@ class ViewController: UIViewController {
     self.emailTextField = view.emailTextField
     self.passwordTextField = view.passwordTextField
     self.logInButton = view.logInButton
+    self.scrollView = view.scrollView
     
     self.view = view
   }
@@ -42,7 +44,20 @@ class ViewController: UIViewController {
   private func setView() {
     title = "Log in"
     emailTextField.delegate = self
+  
     logInButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(keyboardWillShow(_:)),
+      name: UIResponder.keyboardWillShowNotification,
+      object: nil)
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(keyboardWillHide(_:)),
+      name: UIResponder.keyboardWillHideNotification,
+      object: nil)
   }
 
   //MARK: - bind
@@ -62,9 +77,28 @@ class ViewController: UIViewController {
       .disposed(by: disposeBag)
   }
 
-//  //MARK: - actions
+  //MARK: - actions
   @objc func buttonTapped(_ sender: UIButton) {
     print("tap here")
+  }
+  
+  //MARK: - keybord scroll
+  @objc func keyboardWillShow(_ notification: Notification) {
+    setScrollViewInsetForKeyboardShow(true, notification: notification)
+  }
+  
+  @objc func keyboardWillHide(_ notification: Notification) {
+    setScrollViewInsetForKeyboardShow(false, notification: notification)
+  }
+  
+  func setScrollViewInsetForKeyboardShow(_ show: Bool, notification: Notification) {
+    guard
+      let userInfo = notification.userInfo,
+      let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+      else {
+        return
+    }
+    scrollView.contentInset.bottom = (keyboardFrame.cgRectValue.height + 20) * (show ? 1: -1)
   }
 }
 
