@@ -75,6 +75,8 @@ class ViewController: UIViewController {
     viewModel.validation()
       .bind(to: self.logInButton.rx.isEnabled)
       .disposed(by: disposeBag)
+    
+    
   }
 
   //MARK: - actions

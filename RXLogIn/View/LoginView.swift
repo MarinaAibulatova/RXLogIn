@@ -148,8 +148,9 @@ class LoginView: UIView {
     mainView.snp.makeConstraints { (make) in
       make.leading.equalTo(contentView.snp.leading)
       make.trailing.equalTo(contentView.snp.trailing)
-      make.centerX.equalTo(contentView.snp.centerX)
-      make.centerY.equalTo(contentView.snp.centerY)
+      make.top.equalTo(contentView.snp.top)
+    //  make.centerX.equalTo(contentView.snp.centerX)
+     // make.centerY.equalTo(contentView.snp.centerY)
       make.height.equalTo(100)
     }
   }
