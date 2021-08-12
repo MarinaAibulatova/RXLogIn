@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Log in"
+        
         emailTextField.delegate = self
         emailTextField.becomeFirstResponder()
         
@@ -113,7 +114,7 @@ class ViewController: UIViewController {
             return
         }
 
-        scrollView.contentInset.bottom = (keyboardFrame.cgRectValue.height + 20) //* (show ? 1: -1)
+        scrollView.contentInset.bottom = (keyboardFrame.cgRectValue.height + 20)
     }
     
     func setScrollViewInsetForKeyboardUnShow(notification: Notification) {
