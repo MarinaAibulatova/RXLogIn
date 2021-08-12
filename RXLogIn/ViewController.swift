@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Log in"
+        
         emailTextField.delegate = self
         emailTextField.becomeFirstResponder()
         
