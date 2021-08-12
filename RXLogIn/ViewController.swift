@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     private weak var passwordTextField: UITextField!
     private weak var logInButton: UIButton!
     private weak var scrollView: UIScrollView!
-    
+   
     //MARK: - life cicle
     override func loadView() {
         let view = LoginView()
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         self.passwordTextField = view.passwordTextField
         self.logInButton = view.logInButton
         self.scrollView = view.scrollView
-        
+       
         self.view = view
     }
     override func viewDidLoad() {
@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         
         title = "Log in"
         emailTextField.delegate = self
+        emailTextField.becomeFirstResponder()
         
         configureViews()
         configureBinding()
@@ -55,8 +56,7 @@ class ViewController: UIViewController {
         logInButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
     }
     
-    //MARK: - bind
-    func configureBinding() {
+    private func configureBinding() {
         emailTextField.rx.text
             .orEmpty
             .bind(to: viewModel.emailRelay)
@@ -98,21 +98,33 @@ class ViewController: UIViewController {
     
     //MARK: - keybord scroll
     @objc func keyboardWillShow(_ notification: Notification) {
-        setScrollViewInsetForKeyboardShow(true, notification: notification)
+        setScrollViewInsetForKeyboardShow(notification: notification)
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        setScrollViewInsetForKeyboardShow(false, notification: notification)
+        setScrollViewInsetForKeyboardUnShow(notification: notification)
     }
     
-    func setScrollViewInsetForKeyboardShow(_ show: Bool, notification: Notification) {
+    func setScrollViewInsetForKeyboardShow(notification: Notification) {
         guard
             let userInfo = notification.userInfo,
             let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         else {
             return
         }
-        scrollView.contentInset.bottom = (keyboardFrame.cgRectValue.height + 20) * (show ? 1: -1)
+
+        scrollView.contentInset.bottom = (keyboardFrame.cgRectValue.height + 20) //* (show ? 1: -1)
+    }
+    
+    func setScrollViewInsetForKeyboardUnShow(notification: Notification) {
+        guard
+            let userInfo = notification.userInfo,
+            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        else {
+            return
+        }
+
+        scrollView.contentInset.bottom -= keyboardFrame.cgRectValue.height + 20
     }
 }
 

@@ -11,13 +11,15 @@ import SnapKit
 class LoginView: UIView {
     
     //MARK: - public properties
-     var scrollView: UIScrollView!
-     var contentStackView: UIStackView!
-     var emailTextField: UITextField!
-     var passwordTextField: UITextField!
-     var forgotButton: UIButton!
-     var logInButton: UIButton!
-
+    var scrollView: UIScrollView!
+    var contentStackView: UIStackView!
+    var emailTextField: UITextField!
+    var passwordTextField: UITextField!
+    var forgotButton: UIButton!
+    var logInButton: UIButton!
+    var someView: UIView!
+    
+    
     //MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,6 +51,13 @@ class LoginView: UIView {
             return i
         }()
         
+        someView = {
+            let i = UIView()
+            i.backgroundColor = .white
+            
+            return i
+        }()
+        
         emailTextField = {
             let i = UITextField()
             i.font = UIFont.systemFont(ofSize: 14)
@@ -62,7 +71,6 @@ class LoginView: UIView {
             i.layer.cornerRadius = 10
             i.clipsToBounds = true
             i.backgroundColor = UIColor.systemGray6
-            i.becomeFirstResponder() // убрать в контроллер
             return i
         }()
         
@@ -103,7 +111,8 @@ class LoginView: UIView {
         
         addSubview(scrollView)
         scrollView.addSubview(contentStackView)
-    
+        
+        contentStackView.addArrangedSubview(someView)
         contentStackView.addArrangedSubview(emailTextField)
         contentStackView.addArrangedSubview(passwordTextField)
         contentStackView.addArrangedSubview(forgotButton)
@@ -119,6 +128,11 @@ class LoginView: UIView {
         contentStackView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
             make.width.equalToSuperview()
+        }
+        
+        someView.snp.makeConstraints { (make) in
+            make.height.equalTo(400)
+            make.width.equalTo(400)
         }
     }
 }
